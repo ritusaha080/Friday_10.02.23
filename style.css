@@ -1,0 +1,18 @@
+h1{
+    color:red
+}
+.header-cls{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+}
+.header-cls ul{
+    display: flex;
+    list-style: none;
+}
+.header-cls li{
+    margin-right: 20px; 
+}
+.active{
+    color: blue;
+}

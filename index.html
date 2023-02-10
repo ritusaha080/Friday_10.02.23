@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="header-cls">
+        <h1>Logo</h1>
+        <ul class="mainmenu">
+            <li class="active">Home</li>
+            <li>About</li>
+            <li>Contact us</li>
+        </ul>
+
+    </header>
+<ul class="country-list">
+
+</ul>
+
+<div class="container">
+    Name: <input type="text" id='name'> <br>
+    username: <input type="text" id='username'> <br>
+    Email: <input type="text" id='email'> <br>
+    Address:<input type="text"id='address'><br>
+    <input type="button" id="btn_submit" value="Submit">
+  </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+
+    <script>
+        $(".mainmenu li").on("click", function () {
+            $(".mainmenu li").removeClass("active");
+            $(this).addClass("active");
+        });
+
+        //get
+        $(window).on("load", function () {
+            $.get(
+                "https://jsonplaceholder.typicode.com/users",
+                function (data, status) {
+                    console.log(data);
+                    if (status !== 'success'){
+                        alert('Server Error');
+                        return;
+                    }
+                    const users = data;
+                    for (let user of users){
+                        $(".country-list").append(`<li>${user.address.city}</li>`);
+                    }
+
+    
+                }
+            );
+
+        });
+        //post
+        
+  
+        $("#btn_submit").on("click", function(){
+
+
+let name = $("#name").val();
+let username = $("#username").val();
+let email = $("#email").val();
+let address = $("#addres").val();
+
+$.ajax({
+  url: `https://jsonplaceholder.typicode.com/users
+`,
+  type: "POST",
+  data: { name, email, username, address },
+  success: (response) => {
+    console.log(response);
+  },
+});
+});
+
+        
+    </script>
+
+</body>
+
+</html>
